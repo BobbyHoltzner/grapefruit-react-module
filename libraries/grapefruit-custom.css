@@ -1,0 +1,9 @@
+
+/* Custom CSS */
+
+
+/* Override Bootstrap Dropdown menu overflow */
+.dropdown-menu {
+    overflow-y: scroll;
+    max-height: 250;
+}

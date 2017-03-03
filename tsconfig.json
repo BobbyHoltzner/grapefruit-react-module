@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+        "module": "es6",
+        "noImplicitAny": true,
+        "noUnusedLocals": true,
+        "removeComments": false,
+        "preserveConstEnums": true,
+        "sourceMap": false,
+        "allowJs": false,
+        "jsx" : "react",
+        "target": "ES6",
+        "experimentalDecorators": true,
+        "outDir": "./build"
+    },
+    "include": [
+        "src/**/*.ts",
+        "src/**/*.tsx"
+    ],
+    "exclude": [
+        "node_modules",
+        "build",
+        "devserver",
+        "extern"
+    ]
+}
+
