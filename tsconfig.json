@@ -17,10 +17,8 @@
         "src/**/*.tsx"
     ],
     "exclude": [
-        "node_modules",
-        "build",
-        "devserver",
-        "extern"
+        "typings/**",
+        "node_modules"
     ]
 }
 

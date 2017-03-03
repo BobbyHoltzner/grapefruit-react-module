@@ -24,11 +24,32 @@ var config = {
           "Access-Control-Allow-Origin": "*"
         },
         proxy: {
-          '/index/api': {
-              target: 'http://localhost:8000/index.html/index/testEndpoint',
+          '/index/showStudioSelect': {
+              target: 'http://localhost:8000/index.html/index/showStudioSelect',
               secure: false,
               pathRewrite: {
-                '/index/api' : ''
+                '/index/showStudioSelect' : ''
+              }
+          },
+          '/index/loadStudioNames': {
+              target: 'http://localhost:8000/index.html/index/loadStudioNames',
+              secure: false,
+              pathRewrite: {
+                '/index/loadStudioNames' : ''
+              }
+          },
+          '/index/loadStudioEvents': {
+              target: 'http://localhost:8000/index.html/index/loadStudioEvents',
+              secure: false,
+              pathRewrite: {
+                '/index/loadStudioEvents' : ''
+              }
+          },
+          '/index/loadEventRoster': {
+              target: 'http://localhost:8000/index.html/index/loadEventRoster',
+              secure: false,
+              pathRewrite: {
+                '/index/loadEventRoster' : ''
               }
           }
         }

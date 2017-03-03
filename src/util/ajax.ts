@@ -1,8 +1,7 @@
 /// <reference path="../../typings/index.d.ts" />
-import * as $ from "jquery";
 const swal = require("sweetalert");
 
-export function gfAjaxAction(postAction: string, data: any, successFn: any){
+export const gfAjaxAction = async (postAction: string, data: any, successFn: any) => {
     var url, postUrl;
     url = document.URL;
     if (url.slice(-1) == '#') {
@@ -14,30 +13,45 @@ export function gfAjaxAction(postAction: string, data: any, successFn: any){
     else {
         postUrl = url.concat("/index/" + postAction);
     }
-    $.ajax({
-        type: "POST",
-        url: postUrl,
-        data: data,
-        cache: false,
-        success: function (result: any) {
-            successFn(result);
-        },
-        error: function (jqXHR: any, exception: string) {
-            if (jqXHR.status === 0) {
-                swal('Not connected.\n Verify Network.');
-            } else if (jqXHR.status == 404) {
-                swal('Requested page not found. [404]');
-            } else if (jqXHR.status == 500) {
-                swal('Internal Server Error [500].');
-            } else if (exception === 'parsererror') {
-                swal('Requested JSON parse failed.');
-            } else if (exception === 'timeout') {
-                swal('Time out error.');
-            } else if (exception === 'abort') {
-                swal('Ajax request aborted.');
-            } else {
-                swal('Uncaught Error.\n' + jqXHR.responseText);
-            }
+    try {
+          let response = await fetch(postUrl, {
+              method: "POST",
+              body: data
+          });
+          if(response.status === 200) {
+            let responseJson = await response.json();
+            return responseJson;
+          }
+          else {
+              handleError(response);
+              return {};
+          }
+      }
+      catch(error) {
+          handleError(error);
+          return {};
+      }
+}
+
+const handleError = (response: Response) => {
+    if (response.status === 0) {
+        swal('Not connect.\n Verify Network.');
+    } else if (response.status == 404) {
+        swal('Requested page not found. [404]');
+    } else if (response.status == 500) {
+        swal('Internal Server Error [500].');
+    } else if (response.statusText === 'parsererror') {
+        swal('Requested JSON parse failed.');
+    } else if (response.statusText === 'timeout') {
+        swal('Time out error.');
+    } else if (response.statusText === 'abort') {
+        swal('Ajax request aborted.');
+    } else {
+        if(typeof(response) === "string") {
+            swal('Uncaught Error.\n' + response);
         }
-    });
+        else {
+            swal('Uncaught Error.\n' + response.statusText);
+        }
+    }
 }

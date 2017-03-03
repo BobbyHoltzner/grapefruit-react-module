@@ -1,8 +1,20 @@
 {
   "mocks": [
     {
-      "route": "/index.html/index/testEndpoint",
-      "module": "/mock-api/test-endpoint.js"
+      "route": "/index.html/index/showStudioSelect",
+      "module": "/mock-api/showStudioSelect.js"
+    },
+    {
+      "route": "/index.html/index/loadStudioNames",
+      "module": "/mock-api/loadStudioNames.js"
+    },    
+    {
+      "route": "/index.html/index/loadStudioEvents",
+      "module": "/mock-api/loadStudioEvents.js"
+    },    
+    {
+      "route": "/index.html/index/loadEventRoster",
+      "module": "/mock-api/loadEventRoster.js"
     }
   ]
 }
